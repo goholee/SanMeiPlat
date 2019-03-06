@@ -14,5 +14,20 @@ namespace SanMeiPlat.EntityFrameworkCore
             : base(options)
         {
         }
+
+        public DbSet<Courses.Courses> Courses { get; set; }
+        public DbSet<CourseTypes.CourseTypes> courseTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CourseTypes.CourseTypes>().ToTable("CourseTypes", "SM");
+            modelBuilder.Entity<Courses.Courses>().ToTable("Courses", "SM");
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+
+
     }
 }

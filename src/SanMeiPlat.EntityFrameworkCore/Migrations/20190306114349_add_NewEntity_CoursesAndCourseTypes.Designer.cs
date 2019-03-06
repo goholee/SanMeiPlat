@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SanMeiPlat.EntityFrameworkCore;
 
 namespace SanMeiPlat.Migrations
 {
     [DbContext(typeof(SanMeiPlatDbContext))]
-    partial class SanMeiPlatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190306114349_add_NewEntity_CoursesAndCourseTypes")]
+    partial class add_NewEntity_CoursesAndCourseTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

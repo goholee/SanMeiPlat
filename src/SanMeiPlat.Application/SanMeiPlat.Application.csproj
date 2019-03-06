@@ -13,4 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SanMeiPlat.Core\SanMeiPlat.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CourseTypes\" />
+  </ItemGroup>
 </Project>
