@@ -22,37 +22,37 @@ namespace SanMeiPlat.Courses
         /// <summary>
         /// 课程名称
         /// </summary>
-        [MaxLength(200)]
+        [MaxLength(SanMeiPlatConsts.MaxCourseLength)]
         public string CourseName { get; set; }
 
         /// <summary>
         /// 授课讲师
         /// </summary>
-        [MaxLength(20)]
+        [MaxLength(SanMeiPlatConsts.MaxNameLength)]
         public string CourseTeacher { get; set; }
 
         /// <summary>
         /// 授课地点
         /// </summary>
-        [MaxLength(500)]
+        [MaxLength(SanMeiPlatConsts.MaxAddressLength)]
         public string CourseAddress { get; set; }
 
         /// <summary>
         /// 开课时间
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(SanMeiPlatConsts.MaxDateLength)]
         public string CourseStartDate { get; set; }
 
         /// <summary>
         /// 课程报名老师，课程联系人
         /// </summary>
-        [MaxLength(20)]
+        [MaxLength(SanMeiPlatConsts.MaxNameLength)]
         public string CourseContact { get; set; }
 
         /// <summary>
         /// 课程报名电话，课程联系人电话
         /// </summary>
-        [MaxLength(11)]
+        [MaxLength(SanMeiPlatConsts.MaxPhoneLength)]
         public string CourseContactNumber { get; set; }
 
 

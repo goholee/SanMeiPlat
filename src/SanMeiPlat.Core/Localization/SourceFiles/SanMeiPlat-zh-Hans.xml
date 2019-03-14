@@ -3,7 +3,7 @@
   <texts>
     <text name="HomePage" value="主页" />
     <text name="About" value="关于我们" />
-    <text name="WelcomeMessage" value="欢迎使用 SanMeiPlat!" />
+    <text name="WelcomeMessage" value="欢迎使用 三昧古中医平台!" />
     <text name="FormIsNotValidMessage" value="部分输入信息不符合要求，请检查并改正.." />
     <text name="TenantNameCanNotBeEmpty" value="租户名不能为空" />
     <text name="InvalidUserNameOrPassword" value="用户名或密码无效" />
@@ -21,10 +21,11 @@
     <text name="LeaveEmptyToSwitchToHost" value="留空以切换到Host"/>
     <text name="LogIn" value="登录" />
     <text name="LoginFailed" value="登录失败!" />
-    <text name="AppName" >SanMeiPlat</text>
+    <!--<text name="AppName" >SanMeiPlat</text>-->
+    <text name="AppName" >三昧古中医平台</text>
     <text name="UserNamePlaceholder" >请输入账户</text>
     <text name="PasswordPlaceholder" >请输入密码</text>
-    <text name="CopyRight" >© 2018 SanMeiPlat</text>
+    <text name="CopyRight" >© 2018 三昧古中医平台</text>
     <text name="LoginPrompt" >正在登陆，请稍候！</text>
     <text name="UserProfile" >用户资料</text>
     <text name="Users" >用户</text>
@@ -96,8 +97,28 @@
     <text name="DefaultPasswordIs">默认密码为：{0}</text>
     <text name="DeleteTenantConfirm">确认删除该租户？</text>
     <text name="EditTenant">编辑租户</text>
+
+
+    <!--公用-->
     
+    <!--课程中心-->
+    <text name="CourseCenter">课程中心</text>
+    <text name="Courses">课程管理</text>
+    <text name="CourseType">课程类型</text>
+    <text name="CourseNum">课程期数</text>
+    <text name="CourseName">课程名称</text>
+    <text name="CourseTeacher">授课讲师</text>
+    <text name="CourseAddress">授课地点</text>
+    <text name="CourseStartDate">开课时间</text>
+    <text name="CourseContact">报名老师</text>
+    <text name="CourseContactNumber">报名电话</text>
+
+    <text name="CreateNewCourse">创建新课程</text>
+    <text name="CourseDetails">课程详情</text>
+
     
+
+
   </texts>
 </localizationDictionary>
 

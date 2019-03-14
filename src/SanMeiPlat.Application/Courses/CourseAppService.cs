@@ -1,23 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Text;
-using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using SanMeiPlat.Courses.Dto;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
 
 namespace SanMeiPlat.Courses
 {
+    /// <summary>
+    /// 课程服务实现
+    /// </summary>
     public class CourseAppService : SanMeiPlatAppServiceBase, ICourseAppService
-    {
-
+    {   
         private readonly IRepository<Courses> _courseRepository;
+        //private readonly CourseManage _courseManage;
+
+        public CourseAppService(IRepository<Courses> courseRespository)
+        {
+            _courseRepository = courseRespository;
+        }
 
         public async Task CreateOrUpdateCourseAsync(CreateOrUpdateCourseInput input)
         {
@@ -43,9 +49,10 @@ namespace SanMeiPlat.Courses
             await _courseRepository.DeleteAsync(input.Id);
         }
 
-        public Task<CourseListDto> GetCourseByIdAsync(NullableIdDto input)
+        public async Task<CourseListDto> GetCourseByIdAsync(NullableIdDto input)
         {
-            throw new NotImplementedException();
+            var course = await _courseRepository.GetAsync(input.Id.Value);
+            return course.MapTo<CourseListDto>();
         }
 
         public async Task<PagedResultDto<CourseListDto>> GetPagedCourseAsync(GetCourseInput input)
@@ -78,7 +85,6 @@ namespace SanMeiPlat.Courses
 
         }
 
-
         protected async Task UpdateCourseAsync(CourseEditDto input)
         {
             var entity = await _courseRepository.GetAsync(input.Id.Value);
@@ -88,7 +94,7 @@ namespace SanMeiPlat.Courses
 
         protected async Task CreateCourseAsync(CourseEditDto input)
         {
-            _courseRepository.Insert(input.MapTo<Courses>());
+            await _courseRepository.InsertAsync(input.MapTo<Courses>());
         }
 
     }

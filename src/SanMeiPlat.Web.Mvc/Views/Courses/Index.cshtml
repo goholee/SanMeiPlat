@@ -1,0 +1,184 @@
+﻿@using Abp.Authorization.Users
+@using Abp.Application.Services.Dto;
+@using SanMeiPlat.Courses.Dto;
+@using SanMeiPlat.Web.Startup;
+@using SanMeiPlat;
+
+@model Abp.Application.Services.Dto.PagedResultDto<SanMeiPlat.Courses.Dto.CourseListDto>
+@{
+    ViewBag.CurrentPageName = PageNames.Courses; // The menu item will be active for this page.
+}
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Courses/Index.js" asp-append-version="true"></script>
+    </environment>
+    
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("Courses")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>@L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@L("CourseName")</th>
+                            <th>@L("CourseTeacher")</th>
+                            <th>@L("CourseAddress")</th>
+                            <th>@L("CourseStartDate")</th>
+                            <th>@L("CourseContact")</th>
+                            <th>@L("CreationTime")</th>
+                            <th>@L("Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in Model.Items)
+                        {
+                        <tr>
+                            <td>@course.CourseName</td>
+                            <td>@course.CourseTeacher</td>
+                            <td>@course.CourseAddress</td>
+                            <td>@course.CourseStartDate</td>
+                            <td>@course.CourseContact</td>
+                            <td>@course.CreationTime</td>
+                            <td class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#" class="waves-effect waves-block edit-course" data-course-id="@course.Id" data-toggle="modal" data-target="#CourseEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                    <li><a href="#" class="waves-effect waves-block delete-course" data-course-id="@course.Id" data-course-name="@course.CourseName"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#CourseCreateModal">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CourseCreateModal" tabindex="-1" role="dialog" aria-labelledby="CourseCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>@L("CreateNewCourse")</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="courseCreateForm" role="form" novalidate class="form-validation">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#create-course-details" data-toggle="tab">@L("CourseDetails")</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="create-course-details">
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseType" class="form-control" required>
+                                            <label class="form-label">@L("CourseType")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseNum" class="form-control" required>
+                                            <label class="form-label">@L("CourseNum")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="text" name="CourseName" required maxlength="@SanMeiPlatConsts.MaxCourseLength" minlength="2">
+                                            <label class="form-label">@L("CourseName")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseTeacher" class="form-control" required maxlength="@SanMeiPlatConsts.MaxNameLength">
+                                            <label class="form-label">@L("CourseTeacher")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseStartDate" class="form-control" required maxlength="@SanMeiPlatConsts.MaxDateLength">
+                                            <label class="form-label">@L("CourseStartDate")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseAddress" class="form-control" required maxlength="@SanMeiPlatConsts.MaxAddressLength">
+                                            <label class="form-label">@L("CourseAddress")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseContact" class="form-control" required maxlength="@SanMeiPlatConsts.MaxNameLength">
+                                            <label class="form-label">@L("CourseContact")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseContactNumber" class="form-control" required maxlength="@SanMeiPlatConsts.MaxPhoneLength">
+                                            <label class="form-label">@L("CourseContactNumber")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                        <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CourseEditModal" tabindex="-1" role="dialog" aria-labelledby="CourseEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

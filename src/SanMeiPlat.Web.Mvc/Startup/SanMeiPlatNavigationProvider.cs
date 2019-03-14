@@ -47,6 +47,14 @@ namespace SanMeiPlat.Web.Startup
                 )
                 .AddItem(
                     new MenuItemDefinition(
+                        PageNames.Courses,
+                        new FixedLocalizableString("课程管理"),
+                        url: "Courses?skipCount=0&maxResultCount=10",
+                        icon: "local_offer"
+                    )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
                         url: "About",
