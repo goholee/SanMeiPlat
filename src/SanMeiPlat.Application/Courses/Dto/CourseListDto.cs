@@ -13,7 +13,7 @@ namespace SanMeiPlat.Courses.Dto
         /// 课程类型
         /// </summary>
 
-        public CourseTypes.CourseTypes CourseType { get; set; }
+        public string CourseType { get; set; }
 
         /// <summary>
         /// 课程期数

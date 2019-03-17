@@ -100,11 +100,16 @@
 
 
     <!--公用-->
-    
+
+    <!--系统管理-->
+    <text name="SystemManager">系统管理</text>
+
+
     <!--课程中心-->
     <text name="CourseCenter">课程中心</text>
     <text name="Courses">课程管理</text>
     <text name="CourseType">课程类型</text>
+    <text name="CourseTypeName">课程类型</text>
     <text name="CourseNum">课程期数</text>
     <text name="CourseName">课程名称</text>
     <text name="CourseTeacher">授课讲师</text>
@@ -115,8 +120,10 @@
 
     <text name="CreateNewCourse">创建新课程</text>
     <text name="CourseDetails">课程详情</text>
-
+    <text name="CourseTypes">课程类型</text>
+    <text name="CourseTypeDetails">课程类型详情</text>
     
+
 
 
   </texts>

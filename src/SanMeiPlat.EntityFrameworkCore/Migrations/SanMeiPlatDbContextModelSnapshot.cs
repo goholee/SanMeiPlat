@@ -1041,7 +1041,7 @@ namespace SanMeiPlat.Migrations
 
                     b.Property<string>("CourseTypeName")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -1083,12 +1083,12 @@ namespace SanMeiPlat.Migrations
                     b.Property<int>("CourseNum");
 
                     b.Property<string>("CourseStartDate")
-                        .HasMaxLength(50);
+                        .HasMaxLength(10);
 
                     b.Property<string>("CourseTeacher")
                         .HasMaxLength(20);
 
-                    b.Property<int>("CourseTypeId");
+                    b.Property<string>("CourseType");
 
                     b.Property<DateTime>("CreationTime");
 
@@ -1105,8 +1105,6 @@ namespace SanMeiPlat.Migrations
                     b.Property<long?>("LastModifierUserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseTypeId");
 
                     b.ToTable("Courses","SM");
                 });
@@ -1309,14 +1307,6 @@ namespace SanMeiPlat.Migrations
                     b.HasOne("SanMeiPlat.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
-                });
-
-            modelBuilder.Entity("SanMeiPlat.Courses.Courses", b =>
-                {
-                    b.HasOne("SanMeiPlat.CourseTypes.CourseTypes", "CourseType")
-                        .WithMany()
-                        .HasForeignKey("CourseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SanMeiPlat.MultiTenancy.Tenant", b =>

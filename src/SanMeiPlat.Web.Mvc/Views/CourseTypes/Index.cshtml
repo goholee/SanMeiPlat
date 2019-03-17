@@ -1,0 +1,111 @@
+﻿@using Abp.Authorization.Users
+@using Abp.Application.Services.Dto;
+@using SanMeiPlat.Courses.Dto;
+@using SanMeiPlat.Web.Startup;
+@using SanMeiPlat;
+
+@model Abp.Application.Services.Dto.PagedResultDto<SanMeiPlat.CourseTypes.Dto.CourseTypeListDto>
+@{
+    ViewBag.CurrentPageName = PageNames.CourseTypes; // The menu item will be active for this page.
+}
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/CourseTypes/Index.js" asp-append-version="true"></script>
+    </environment>
+    
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("CourseTypes")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>@L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@L("CourseTypeName")</th>
+                            <th>@L("CreationTime")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var courseType in Model.Items)
+                        {
+                        <tr>
+                            <td>@courseType.CourseTypeName</td>
+                            <td>@courseType.CreationTime</td>
+                            <td class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#" class="waves-effect waves-block edit-course" data-course-id="@courseType.Id" data-toggle="modal" data-target="#CourseTypeEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                    <li><a href="#" class="waves-effect waves-block delete-course" data-course-id="@courseType.Id" data-course-name="@courseType.CourseTypeName"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#CourseTypeCreateModal">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CourseTypeCreateModal" tabindex="-1" role="dialog" aria-labelledby="CourseTypeCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>@L("CreateNewCourseType")</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="courseTypeCreateForm" role="form" novalidate class="form-validation">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#create-courseType-details" data-toggle="tab">@L("CourseTypeDetails")</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="create-courseType-details">
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="CourseTypeName" class="form-control" required>
+                                            <label class="form-label">@L("CourseTypeName")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                        <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CourseTypeEditModal" tabindex="-1" role="dialog" aria-labelledby="CourseTypeEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>

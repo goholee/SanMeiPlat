@@ -20,38 +20,6 @@ namespace SanMeiPlat.Web.Startup
                         icon: "home",
                         requiresAuthentication: true
                     )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Tenants,
-                        L("Tenants"),
-                        url: "Tenants",
-                        icon: "business",
-                        requiredPermissionName: PermissionNames.Pages_Tenants
-                    )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Users,
-                        L("Users"),
-                        url: "Users",
-                        icon: "people",
-                        requiredPermissionName: PermissionNames.Pages_Users
-                    )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Roles,
-                        L("Roles"),
-                        url: "Roles",
-                        icon: "local_offer",
-                        requiredPermissionName: PermissionNames.Pages_Roles
-                    )
-                )
-                .AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Courses,
-                        new FixedLocalizableString("课程管理"),
-                        url: "Courses?skipCount=0&maxResultCount=10",
-                        icon: "local_offer"
-                    )
                 )
                 .AddItem(
                     new MenuItemDefinition(
@@ -60,7 +28,67 @@ namespace SanMeiPlat.Web.Startup
                         url: "About",
                         icon: "info"
                     )
-                ).AddItem( // Menu items below is just for demonstration!
+                )
+                .AddItem( //==== 一级菜单 课程中心====
+                    new MenuItemDefinition(
+                        "MultiLevelMenu",
+                        new FixedLocalizableString("课程中心"),
+                        icon: "menu"
+                    )
+                    .AddItem( //---- 二级菜单 课程管理----
+                        new MenuItemDefinition(
+                            PageNames.Courses,
+                            new FixedLocalizableString("课程管理"),
+                            url: "Courses?skipCount=0&maxResultCount=10",
+                            icon: "local_offer"
+                        )
+                    )
+                    .AddItem( //---- 二级菜单 班级管理----
+                        new MenuItemDefinition(
+                            PageNames.Courses,
+                            new FixedLocalizableString("班级管理"),
+                            url: "Courses?skipCount=0&maxResultCount=10",
+                            icon: "local_offer"
+                        )
+                    )
+                ).AddItem( //==== 一级菜单 系统管理====
+                    new MenuItemDefinition(
+                        "MultiLevelMenu",
+                        new FixedLocalizableString("系统管理"),
+                        icon: "menu"
+                    ).AddItem( //---- 二级菜单 课程类型----
+                        new MenuItemDefinition(
+                            PageNames.CourseTypes,
+                            new FixedLocalizableString("课程类型"),
+                            url: "CourseTypes?skipCount=0&maxResultCount=10",
+                            icon: "local_offer"
+                        )
+                    ).AddItem( //---- 二级菜单 租户（禁用）----
+                        new MenuItemDefinition(
+                            PageNames.Tenants,
+                            L("Tenants"),
+                            url: "Tenants",
+                            icon: "business",
+                            requiredPermissionName: PermissionNames.Pages_Tenants
+                        )
+                    ).AddItem( //---- 二级菜单 用户----
+                        new MenuItemDefinition(
+                            PageNames.Users,
+                            L("Users"),
+                            url: "Users",
+                            icon: "people",
+                            requiredPermissionName: PermissionNames.Pages_Users
+                        )
+                    ).AddItem( //---- 二级菜单 角色----
+                        new MenuItemDefinition(
+                            PageNames.Roles,
+                            L("Roles"),
+                            url: "Roles",
+                            icon: "local_offer",
+                            requiredPermissionName: PermissionNames.Pages_Roles
+                        )
+                    )
+                ).AddItem( // 一级菜单  多级菜单
                     new MenuItemDefinition(
                         "MultiLevelMenu",
                         L("MultiLevelMenu"),

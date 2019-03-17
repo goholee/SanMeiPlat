@@ -11,8 +11,7 @@ namespace SanMeiPlat.Courses
         /// <summary>
         /// 课程类型
         /// </summary>
-        [Required]
-        public CourseTypes.CourseTypes CourseType { get; set; }
+        public string CourseType { get; set; }
 
         /// <summary>
         /// 课程期数

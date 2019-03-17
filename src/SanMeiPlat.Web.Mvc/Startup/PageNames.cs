@@ -9,7 +9,8 @@
         public const string Roles = "Roles";
         
         //自定义
-        public const string Courses = "Courses"; 
+        public const string Courses = "Courses";
+        public const string CourseTypes = "CourseTypes";
         public const string Classes = "Classes";
     }
 }

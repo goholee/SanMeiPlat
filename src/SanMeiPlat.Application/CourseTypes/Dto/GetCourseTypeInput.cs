@@ -1,9 +1,11 @@
-﻿using Abp.Runtime.Validation;
+﻿using Abp.AutoMapper;
+using Abp.Runtime.Validation;
 using SanMeiPlat.Dto;
 
-namespace SanMeiPlat.Courses.Dto
+namespace SanMeiPlat.CourseTypes.Dto
 {
-    public class GetCourseInput : PagedAndSortedInputDto, IShouldNormalize
+    [AutoMapFrom(typeof(CourseTypes))]
+    public class GetCourseTypeInput : PagedAndSortedInputDto, IShouldNormalize
     {
         public string FilterText { get; set; }
 
