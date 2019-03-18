@@ -21,6 +21,13 @@ namespace SanMeiPlat.CourseTypes
         Task<CourseTypeListDto> GetCourseTypeByIdAsync(NullableIdDto input);
 
         /// <summary>
+        /// 通过课程类型的ID 编辑
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<GetCourseTypeForEditOutput> GetCourseTypeForEditAsync(NullableIdDto input);
+
+        /// <summary>
         /// 新增或更新课程分类
         /// </summary>
         /// <returns></returns>

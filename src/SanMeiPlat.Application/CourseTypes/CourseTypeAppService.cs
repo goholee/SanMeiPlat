@@ -46,6 +46,11 @@ namespace SanMeiPlat.CourseTypes
             await _courseTypeRepository.DeleteAsync(input.Id);
         }
 
+        /// <summary>
+        /// 通过ID获取课程类型信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<CourseTypeListDto> GetCourseTypeByIdAsync(NullableIdDto input)
         {
             var courseType = await _courseTypeRepository.GetAsync(input.Id.Value);
@@ -79,6 +84,25 @@ namespace SanMeiPlat.CourseTypes
             await _courseTypeRepository.InsertAsync(input.MapTo<CourseTypes>());
         }
 
-
+        /// <summary>
+        /// 通过ID获取要编辑的信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<GetCourseTypeForEditOutput> GetCourseTypeForEditAsync(NullableIdDto input)
+        {
+            var output = new GetCourseTypeForEditOutput();
+            CourseTypeEditDto courseTypeEditDto;
+            if (input.Id.HasValue)
+            {
+                var entity = await _courseTypeRepository.GetAsync(input.Id.Value);
+                courseTypeEditDto = entity.MapTo<CourseTypeEditDto>();
+            }
+            else {
+                courseTypeEditDto = new CourseTypeEditDto();
+            }
+            output.CourseType = courseTypeEditDto;
+            return output;
+        }
     }
 }
